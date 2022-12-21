@@ -2,6 +2,7 @@ package com.example.supplychain;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +23,9 @@ public class HelloApplication extends Application {
         Button searchButton = new Button("Search");
 
         GridPane gridPane = new GridPane();
+        //vertical and horizontal gap
+        gridPane.setVgap(5);
+        gridPane.setHgap(5);
 
         gridPane.add(searchText,0,0);
         gridPane.add(searchButton,1,0);
@@ -36,6 +40,15 @@ public class HelloApplication extends Application {
         PasswordField passwordField = new PasswordField();
 
         GridPane gridPane = new GridPane();
+        //Rearranging the structure
+        gridPane.setMinSize(bodyPane.getMinWidth(),bodyPane.getMinHeight());
+        //Align to  the centre
+        gridPane.setAlignment(Pos.CENTER);
+        //vertical and horizontal gap
+        gridPane.setVgap(5);
+        gridPane.setHgap(5);
+        //adding colour
+        gridPane.setStyle("-fx-background-color: #BFEAF5");
 //first is x coordinate and 2nd is y
         gridPane.add(emailLable,0,0);
         gridPane.add(emailTextField,1,0);
