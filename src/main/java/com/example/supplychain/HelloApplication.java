@@ -23,10 +23,15 @@ public class HelloApplication extends Application {
         Button searchButton = new Button("Search");
 
         GridPane gridPane = new GridPane();
+        //Rearranging the structure
+        gridPane.setMinSize(bodyPane.getMinWidth(),headerBar-10);
+        //Align to  the centre
+        gridPane.setAlignment(Pos.CENTER);
         //vertical and horizontal gap
         gridPane.setVgap(5);
         gridPane.setHgap(5);
-
+        //adding colour
+        gridPane.setStyle("-fx-background-color: #BFEAF5");
         gridPane.add(searchText,0,0);
         gridPane.add(searchButton,1,0);
         return gridPane;
