@@ -1,6 +1,8 @@
 package com.example.supplychain;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,7 +33,7 @@ public class HelloApplication extends Application {
         gridPane.setVgap(5);
         gridPane.setHgap(5);
         //adding colour
-        gridPane.setStyle("-fx-background-color: #BFEAF5");
+        //gridPane.setStyle("-fx-background-color: #BFEAF5");
         gridPane.add(searchText,0,0);
         gridPane.add(searchButton,1,0);
         return gridPane;
@@ -40,9 +42,21 @@ public class HelloApplication extends Application {
     private GridPane loginPage(){
         Label emailLable = new Label("Email");
         Label passwordLable = new Label("Password");
+        Label messageLable = new Label("I am Message");
 
         TextField emailTextField = new TextField();
         PasswordField passwordField = new PasswordField();
+
+        Button loginButton = new Button("Login");
+        loginButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                String email = emailTextField.getText();
+                String password = passwordField.getText();
+
+                messageLable.setText(email+" $$ "+password);
+            }
+        });
 
         GridPane gridPane = new GridPane();
         //Rearranging the structure
@@ -59,7 +73,8 @@ public class HelloApplication extends Application {
         gridPane.add(emailTextField,1,0);
         gridPane.add(passwordLable,0,1);
         gridPane.add(passwordField,1,1);
-
+        gridPane.add(loginButton,0,2);
+        gridPane.add(messageLable,1,2);
         return gridPane;
 
     }
@@ -78,7 +93,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
        // FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(createContent());
-        stage.setTitle("Hello!");
+        stage.setTitle("Supply Chain Management System");
         stage.setScene(scene);
         stage.show();
     }
