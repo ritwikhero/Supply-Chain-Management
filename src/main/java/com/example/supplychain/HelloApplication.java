@@ -24,7 +24,7 @@ public class HelloApplication extends Application {
         GridPane gridPane = new GridPane();
 
         gridPane.add(searchText,0,0);
-        gridPane.add(searchButton,0,1);
+        gridPane.add(searchButton,1,0);
         return gridPane;
     }
 
@@ -49,7 +49,11 @@ public class HelloApplication extends Application {
         Pane root = new Pane();
         root.setPrefSize(width,height+headerBar);
 
-        root.getChildren().addAll(loginPage());
+        bodyPane.setMinSize(width,height);
+        bodyPane.setTranslateY(headerBar);
+        bodyPane.getChildren().addAll(loginPage());
+        root.getChildren().addAll(headerBar(), bodyPane);
+
         return root;
     }
     @Override
