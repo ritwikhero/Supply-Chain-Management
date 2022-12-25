@@ -48,7 +48,7 @@ public class SupplyChain extends Application {
                 bodyPane.getChildren().clear();
                 bodyPane.getChildren().add(loginPage());
                 globalLoginButton.setDisable(true);
-                customerEmailLable.setText("Welcome : "+ customerEmail);
+
             }
         });
 
@@ -90,6 +90,11 @@ public class SupplyChain extends Application {
 //                messageLable.setText(email+" $$ "+password);
                 if(login.customerLogin(email,password)){
                     messageLable.setText("Login Successful");
+                    customerEmail = email;
+                    globalLoginButton.setDisable(true);
+                    customerEmailLable.setText("Welcome : "+ customerEmail);
+                    bodyPane.getChildren().clear();
+                    bodyPane.getChildren().add(productDetails.getAllProducts());
                 }else{
                     messageLable.setText("Login Failed");
                 }
