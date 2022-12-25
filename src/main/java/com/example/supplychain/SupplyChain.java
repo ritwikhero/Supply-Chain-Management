@@ -23,6 +23,11 @@ public class SupplyChain extends Application {
 
     ProductDetails productDetails = new ProductDetails();
 
+    Button globalLoginButton ;
+    Label customerEmailLable = null;
+
+    String customerEmail = null;
+
     private GridPane headerBar(){
         TextField searchText = new TextField();
         Button searchButton = new Button("Search");
@@ -36,6 +41,18 @@ public class SupplyChain extends Application {
                 bodyPane.getChildren().add(productDetails.getProductsByName(productName));
             }
         });
+        globalLoginButton = new Button("Log in");
+        globalLoginButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                bodyPane.getChildren().clear();
+                bodyPane.getChildren().add(loginPage());
+                globalLoginButton.setDisable(true);
+                customerEmailLable.setText("Welcome : "+ customerEmail);
+            }
+        });
+
+        customerEmailLable = new Label("Welcome user");
 
         GridPane gridPane = new GridPane();
         //Rearranging the structure
@@ -49,6 +66,9 @@ public class SupplyChain extends Application {
         //gridPane.setStyle("-fx-background-color: #BFEAF5");
         gridPane.add(searchText,0,0);
         gridPane.add(searchButton,1,0);
+
+        gridPane.add(globalLoginButton,2,0);
+        gridPane.add(customerEmailLable,3,0);
         return gridPane;
     }
 
