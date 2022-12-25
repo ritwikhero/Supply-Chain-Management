@@ -21,9 +21,21 @@ public class SupplyChain extends Application {
 
     Login login = new Login();
 
+    ProductDetails productDetails = new ProductDetails();
+
     private GridPane headerBar(){
         TextField searchText = new TextField();
         Button searchButton = new Button("Search");
+        searchButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                String productName = searchText.getText();
+                productDetails.getProductsByName(productName);
+                //clear body and put this new pane in the body
+                bodyPane.getChildren().clear();
+                bodyPane.getChildren().add(productDetails.getProductsByName(productName));
+            }
+        });
 
         GridPane gridPane = new GridPane();
         //Rearranging the structure
@@ -90,8 +102,8 @@ public class SupplyChain extends Application {
 
         bodyPane.setMinSize(width,height);
         bodyPane.setTranslateY(headerBar);
-        bodyPane.getChildren().addAll(loginPage());
-        root.getChildren().addAll(headerBar(), bodyPane);
+        bodyPane.getChildren().addAll(productDetails.getAllProducts()/*loginPage()*/);
+        root.getChildren().addAll(headerBar(),  bodyPane);
 
         return root;
     }
