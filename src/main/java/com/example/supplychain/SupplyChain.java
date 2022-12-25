@@ -76,7 +76,19 @@ public class SupplyChain extends Application {
         Button addToCartButton = new Button("Add To Cart");
         Button buyNowButton = new Button("Buy Now");
 
+        Label messageLabel = new Label("");
 
+        buyNowButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Product selectedProduct = productDetails.getSelectedProduct();
+                if(Order.placeOrder(customerEmail, selectedProduct)){
+                    messageLabel.setText("Ordered");
+                }else{
+                    messageLabel.setText("Order Failed");
+                }
+            }
+        });
 
         GridPane gridPane = new GridPane();
         //Rearranging the structure
@@ -91,7 +103,7 @@ public class SupplyChain extends Application {
         //gridPane.setStyle("-fx-background-color: #BFEAF5");
         gridPane.add(addToCartButton,0,0);
         gridPane.add(buyNowButton,1,0);
-
+        gridPane.add(messageLabel,2,0);
 
         return gridPane;
     }
