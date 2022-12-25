@@ -71,6 +71,30 @@ public class SupplyChain extends Application {
         gridPane.add(customerEmailLable,3,0);
         return gridPane;
     }
+    private GridPane footerBar(){
+        //TextField searchText = new TextField();
+        Button addToCartButton = new Button("Add To Cart");
+        Button buyNowButton = new Button("Buy Now");
+
+
+
+        GridPane gridPane = new GridPane();
+        //Rearranging the structure
+        gridPane.setMinSize(bodyPane.getMinWidth(),headerBar-10);
+        //Align to  the centre
+        gridPane.setAlignment(Pos.CENTER);
+        //vertical and horizontal gap
+        gridPane.setTranslateY(headerBar+height+5);
+        gridPane.setVgap(5);
+        gridPane.setHgap(20);
+        //adding colour
+        //gridPane.setStyle("-fx-background-color: #BFEAF5");
+        gridPane.add(addToCartButton,0,0);
+        gridPane.add(buyNowButton,1,0);
+
+
+        return gridPane;
+    }
 
     private GridPane loginPage(){
         Label emailLable = new Label("Email");
@@ -123,12 +147,12 @@ public class SupplyChain extends Application {
     }
     private Pane createContent(){
         Pane root = new Pane();
-        root.setPrefSize(width,height+headerBar);
+        root.setPrefSize(width,height+2*headerBar);
 
         bodyPane.setMinSize(width,height);
         bodyPane.setTranslateY(headerBar);
         bodyPane.getChildren().addAll(productDetails.getAllProducts()/*loginPage()*/);
-        root.getChildren().addAll(headerBar(),  bodyPane);
+        root.getChildren().addAll(headerBar(),  bodyPane, footerBar());
 
         return root;
     }
